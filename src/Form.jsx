@@ -41,64 +41,75 @@ export function Form() {
   });
 
   return (
-    <form className="form" onSubmit={formik.handleSubmit}>
-      <Box
-        // component="form"
-        sx={{
-          "& > :not(style)": { m: 1, width: "25ch" },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <TextField
-          type="text"
-          value={formik.values.id}
-          onChange={formik.handleChange}
-          id="id"
-          name="id"
-          label="id"
-          variant="outlined"
-        />
-        <TextField
-          type="text"
-          value={formik.values.name}
-          onChange={formik.handleChange}
-          id="name"
-          name="name"
-          label="Name"
-          variant="outlined"
-        />
-        <TextField
-          type="text"
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          name="email"
-          id="email"
-          label="email"
-          variant="outlined"
-        />
-        <TextField
-          type="text"
-          value={formik.values.age}
-          onChange={formik.handleChange}
-          id="age"
-          name="age"
-          label="age"
-          variant="outlined"
-        />
-        <TextField
-          type="text"
-          value={formik.values.phone_no}
-          onChange={formik.handleChange}
-          id="phoneno"
-          name="phone_no"
-          label="phone no"
-          variant="outlined"
-        />
-        <Button type="submit" variant="contained">
-          update
-        </Button>
-      </Box>
-    </form>
+    <div className="frm">
+      <form className="form" onSubmit={formik.handleSubmit}>
+        <div className="form1">
+          <Box
+            // component="form"
+            sx={{
+              "& > :not(style)": { m: 1, width: "25ch" },
+            }}
+            noValidate
+            autoComplete="off"
+          >
+            <div className="m">
+              <TextField
+                className="qw"
+                type="text"
+                value={formik.values.id}
+                onChange={formik.handleChange}
+                id="id"
+                name="id"
+                label="id"
+                variant="outlined"
+              />
+              <TextField
+                className="qw"
+                type="text"
+                value={formik.values.name}
+                onChange={formik.handleChange}
+                id="name"
+                name="name"
+                label="Name"
+                variant="outlined"
+              />
+              <TextField
+                className="qw"
+                type="text"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                name="email"
+                id="email"
+                label="email"
+                variant="outlined"
+              />
+              <TextField
+                className="qw"
+                type="text"
+                value={formik.values.age}
+                onChange={formik.handleChange}
+                id="age"
+                name="age"
+                label="age"
+                variant="outlined"
+              />
+              <TextField
+                className="qw"
+                type="text"
+                value={formik.values.phone_no}
+                onChange={formik.handleChange}
+                id="phoneno"
+                name="phone_no"
+                label="phone no"
+                variant="outlined"
+              />
+              <Button type="submit" className="qw" variant="contained">
+                update
+              </Button>
+            </div>
+          </Box>
+        </div>
+      </form>
+    </div>
   );
 }
