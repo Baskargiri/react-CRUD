@@ -9,24 +9,9 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
 import { Form } from "./Form";
+import { Edit } from "./Edit";
 
 function App() {
-  const [data, setData] = useState([
-    {
-      id: 1,
-      name: "Baskar",
-      email: "baskargiri@gmail.com",
-      age: 24,
-      phone_no: 8072734638,
-    },
-    {
-      id: 2,
-      name: "Ashwath",
-      email: "ashwath01@gmail.com",
-      age: 23,
-      phone_no: 8879334638,
-    },
-  ]);
   const navigate = useNavigate();
   return (
     <div className="nav">
@@ -43,11 +28,13 @@ function App() {
         </AppBar>
       </Box>
       <Routes>
-        <Route path="/" element={<Home data={data} setData={setData} />} />
+        <Route path="/" element={<Home />} />
 
-        <Route path="/form" element={<Form data={data} setData={setData} />} />
+        <Route path="/form" element={<Form />} />
+        <Route path="/edit/:id" element={<Edit />} />
       </Routes>
     </div>
   );
 }
+
 export default App;

@@ -5,7 +5,7 @@ import Button from "@mui/material/Button";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 
-export function Form(data, setData) {
+export function Form() {
   const formvalidationSchema = yup.object({
     id: yup.string().required(),
     name: yup.string().required().min(4),
@@ -13,6 +13,16 @@ export function Form(data, setData) {
     age: yup.string().required(),
     phone_no: yup.string().required().min(8),
   });
+
+  const addData = async (newdt) => {
+    console.log(newdt);
+    await fetch("https://6409b5886ecd4f9e18b8ba34.mockapi.io/crudop", {
+      method: "POST",
+      body: JSON.stringify(newdt),
+      headers: { "Content-Type": "application/json" },
+    });
+    navigate("/");
+  };
 
   const navigate = useNavigate();
   const formik = useFormik({
@@ -26,8 +36,7 @@ export function Form(data, setData) {
     validationSchema: formvalidationSchema,
     onSubmit: (values) => {
       console.log(values);
-      setData([...data, values]);
-      navigate("/");
+      addData(values);
     },
   });
 

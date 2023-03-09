@@ -5,23 +5,29 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import { useNavigate } from "react-router-dom";
 
-export function Home({ data, setData }) {
-  const navigate = useNavigate;
-
-  const delt = (id) => {
-    setData(data.filter((num) => num.id !== id));
+export function Home() {
+  const [data, setData] = useState([]);
+  const getdata = () => {
+    fetch("https://6409b5886ecd4f9e18b8ba34.mockapi.io/crudop")
+      .then((e) => e.json())
+      .then((use) => setData(use));
   };
+  useEffect(() => getdata(), []);
 
-  const editform = (id) => {
-    navigate(`/edit/${id}`);
+  const deletebn = (id) => {
+    console.log(id);
+    fetch(`https://6409b5886ecd4f9e18b8ba34.mockapi.io/crudop/${id}`, {
+      method: "DELETE",
+    }).then(() => getdata());
   };
+  const navigate = useNavigate();
   return (
     <div className="table">
       <TableContainer component={Paper}>
@@ -50,7 +56,7 @@ export function Home({ data, setData }) {
                 <TableCell align="right">{row.phone_no}</TableCell>
                 <TableCell align="right">
                   <IconButton
-                    onClick={() => delt(row.id)}
+                    onClick={() => deletebn(row.id)}
                     aria-label="delete"
                     color="error"
                   >
@@ -58,7 +64,10 @@ export function Home({ data, setData }) {
                   </IconButton>
                 </TableCell>
                 <TableCell align="right">
-                  <IconButton onClick={editform(row.id)} aria-label="delete">
+                  <IconButton
+                    onClick={() => navigate(`/edit/${row.id}`)}
+                    aria-label="delete"
+                  >
                     <EditIcon />
                   </IconButton>
                 </TableCell>
